@@ -1,0 +1,126 @@
+.<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Pacifico&display=swap');
+
+* {margin:0; padding:0; box-sizing:border-box;}
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: #ffe6e6;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+.container {
+    text-align:center;
+    background: rgba(255,255,255,0.9);
+    padding:50px 30px;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    max-width:400px;
+    position: relative;
+    animation: fadeIn 1s ease-in-out;
+}
+
+h1 {
+    font-family:'Pacifico', cursive;
+    color:#d94f61;
+    font-size:2.5em;
+    margin-bottom:10px;
+}
+
+p {
+    font-size:1.1em;
+    color:#555;
+    margin-bottom:30px;
+}
+
+.btn {
+    background:#d94f61;
+    color:white;
+    border:none;
+    padding:15px 30px;
+    border-radius:50px;
+    font-size:1em;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover { transform: scale(1.05); }
+
+#loveMessage {
+    margin-top:20px;
+    font-size:1.2em;
+    color:#b33a4a;
+    opacity:0;
+    transition:0.5s;
+}
+
+.heart {
+    position:absolute;
+    font-size:20px;
+    color:#d94f61;
+    animation: floatUp 2s linear infinite;
+}
+
+@keyframes fadeIn {
+    from {opacity:0; transform: scale(0.9);}
+    to {opacity:1; transform: scale(1);}
+}
+
+@keyframes floatUp {
+    0% {transform: translateY(0) scale(1);}
+    50% {transform: translateY(-15px) scale(1.1);}
+    100% {transform: translateY(-40px) scale(1);}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>dear Baweh </h1>
+    <p>Aku mau bilang sesuatu yang penting...</p>
+    <button class="btn" id="yes">mau</button>
+    <div id="loveMessage">i have crush on u,ups… jangan bilang siapa-siapa ya 😳,mau gak kita bikin dunia kita sendiri wkwk 💌
+KAMU RESMI JADI PACARKU YEYYY WKWK💌.</div>
+</div>
+
+<script>
+const yesBtn = document.getElementById('yes');
+const loveMsg = document.getElementById('loveMessage');
+
+yesBtn.onclick = () => {
+    loveMsg.style.opacity = 1;
+    for(let i=0;i<15;i++) createHeart();
+    yesBtn.disabled = true;
+}
+
+function createHeart(){
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.top = window.innerHeight + 'px';
+    heart.innerHTML = '❤️';
+    document.body.appendChild(heart);
+    let speed = 1 + Math.random()*2;
+    let move = 0;
+    const interval = setInterval(()=>{
+        move += speed;
+        heart.style.top = window.innerHeight - move + 'px';
+        if(move > window.innerHeight + 50){
+            heart.remove();
+            clearInterval(interval);
+        }
+    },20);
+}
+</script>
+
+</body>
+</html>

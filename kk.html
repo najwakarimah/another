@@ -1,0 +1,222 @@
+<?php
+// ======================================================
+// KK FOTOCOPY - Company Profile Full PHP Upgrade
+// Tema: Merah-Biru-Putih | Modern, Responsif, Profesional
+// ======================================================
+
+// ====== PROCESS CONTACT FORM ======
+$success = '';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $message = htmlspecialchars($_POST['message']);
+    $entry = "Nama: $name\nEmail: $email\nPesan: $message\n------------------------\n";
+    file_put_contents('messages.txt', $entry, FILE_APPEND);
+    $success = "Pesan Anda berhasil dikirim!";
+}
+?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KK FOTOCOPY - Cepat & Profesional</title>
+    <meta name="description" content="KK FOTOCOPY - Percetakan profesional di Sidoarjo. Fotokopi, print, cetak banner, kartu nama, undangan, poster, dan layanan editing digital.">
+    <meta name="keywords" content="fotokopi, percetakan, print, banner, kartu nama, undangan, poster, editing, Sidoarjo">
+    <link rel="icon" href="https://via.placeholder.com/32x32?text=KF" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+        html {scroll-behavior:smooth;}
+        body{color:#222;line-height:1.6;}
+        header{background:#002f6c;color:white;position:sticky;top:0;z-index:999;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+        nav{display:flex;justify-content:space-between;align-items:center;padding:15px 40px;flex-wrap:wrap;}
+        nav h1{font-size:1.6rem;color:white;}
+        nav ul{display:flex;list-style:none;gap:25px;}
+        nav ul li a{color:white;text-decoration:none;font-weight:500;transition:0.3s;}
+        nav ul li a.active{color:#ffcc00;}
+        nav ul li a:hover{color:#ffcc00;}
+        .hamburger{display:none;cursor:pointer;flex-direction:column;gap:5px;}
+        .hamburger div{width:25px;height:3px;background:white;}
+        @media(max-width:768px){nav ul{display:none;flex-direction:column;width:100%;background:#002f6c;padding:15px 0;border-top:1px solid #fff;}nav ul.show{display:flex;} .hamburger{display:flex;}}
+        .hero{background:linear-gradient(135deg,#002f6c 40%,#c8102e), url('https://via.placeholder.com/1600x600'); background-size:cover;background-blend-mode:overlay;color:white;text-align:center;padding:120px 20px;}
+        .hero h2{font-size:3rem;margin-bottom:15px;animation:fadeInDown 1s;}
+        .hero p{font-size:1.2rem;margin-bottom:30px;max-width:650px;margin-left:auto;margin-right:auto;animation:fadeIn 1s;}
+        .btn{background:white;color:#002f6c;padding:12px 30px;border-radius:30px;text-decoration:none;font-weight:600;transition:0.3s;}
+        .btn:hover{background:#ffcc00;color:black;}
+        section{padding:70px 20px;max-width:1200px;margin:auto;}
+        h2.section-title{text-align:center;color:#002f6c;font-size:2rem;font-weight:700;margin-bottom:40px;position:relative;animation:fadeInUp 1s;}
+        h2.section-title::after{content:'';display:block;width:80px;height:4px;background:#c8102e;margin:10px auto 0;border-radius:2px;}
+        .about p{text-align:center;font-size:1.05rem;max-width:850px;margin:auto;animation:fadeIn 1s;}
+        .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
+        .card{background:white;border:1px solid #ddd;border-radius:12px;padding:20px;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,0.1);transition:0.3s;opacity:0;transform:translateY(20px);}
+        .card.visible{opacity:1;transform:translateY(0);transition:0.6s;}
+        .card img{width:60px;height:60px;margin-bottom:15px;}
+        .card h4{color:#c8102e;margin-bottom:10px;font-size:1.1rem;}
+        .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;}
+        .gallery-grid img{width:100%;border-radius:12px;cursor:pointer;transition:0.3s;}
+        .gallery-grid img:hover{transform:scale(1.05);}
+        .lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:0.3s;}
+        .lightbox img{max-width:90%;max-height:80%;}
+        .lightbox.visible{opacity:1;visibility:visible;}
+        .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
+        .testimonial{background:#f8f8f8;padding:25px;border-radius:12px;box-shadow:0 5px 12px rgba(0,0,0,0.1);opacity:0;transform:translateY(20px);}
+        .testimonial.visible{opacity:1;transform:translateY(0);transition:0.6s;}
+        .testimonial p{margin-bottom:15px;font-style:italic;}
+        .testimonial h5{font-weight:600;color:#002f6c;}
+        .contact form{max-width:600px;margin:auto;display:flex;flex-direction:column;gap:15px;}
+        .contact input, .contact textarea{padding:12px;border-radius:8px;border:1px solid #ccc;font-size:1rem;}
+        .contact button{background:#c8102e;color:white;padding:12px;border:none;border-radius:25px;font-weight:600;cursor:pointer;transition:0.3s;}
+        .contact button:hover{background:#002f6c;}
+        footer{background:#002f6c;color:white;text-align:center;padding:25px;font-size:0.95rem;margin-top:40px;}
+        @keyframes fadeInDown{0%{opacity:0;transform:translateY(-30px);}100%{opacity:1;transform:translateY(0);}}
+        @keyframes fadeInUp{0%{opacity:0;transform:translateY(30px);}100%{opacity:1;transform:translateY(0);}}
+        @keyframes fadeIn{0%{opacity:0;}100%{opacity:1;}}
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <h1>KK FOTOCOPY</h1>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div><div></div><div></div>
+        </div>
+        <ul id="nav-menu">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <h2>Solusi Cepat & Profesional untuk Semua Kebutuhan Fotokopi</h2>
+    <p>Dari fotokopi, print, cetak poster, hingga desain grafis — KK FOTOCOPY siap memberikan layanan terbaik, cepat, dan harga bersahabat.</p>
+    <a href="#contact" class="btn">Hubungi Kami</a>
+</section>
+
+<section id="about">
+    <h2 class="section-title">Tentang KK FOTOCOPY</h2>
+    <p>KK FOTOCOPY adalah perusahaan percetakan modern di Sidoarjo yang melayani fotokopi, print, cetak banner, kartu nama, undangan, poster, dan editing digital. Kami mengutamakan kualitas, kecepatan, dan pelayanan profesional untuk semua klien.</p>
+</section>
+
+<section id="services">
+    <h2 class="section-title">Layanan Kami</h2>
+    <div class="services-grid">
+        <?php
+        $services = [
+            'Cetak ID Card (NEW)',
+            'Cetak CD/DVD (NEW)',
+            'Cetak Undangan Pernikahan (NEW)',
+            'Cetak Poster (NEW)',
+            'Scan Warna / Hitam Putih',
+            'Press Mika dan Laminating',
+            'Penjilidan',
+            'Pengetikan',
+            'Editing',
+            'Cetak Banner A3+',
+            'Fotokopi Hitam Putih',
+            'Print Warna dan Hitam Putih',
+            'Cetak Foto'
+        ];
+        foreach($services as $s){
+            echo '<div class="card">';
+            echo '<img src="https://via.placeholder.com/60" alt="Service Icon">';
+            echo '<h4>'.$s.'</h4>';
+            echo '</div>';
+        }
+        ?>
+    </div>
+</section>
+
+<section id="gallery">
+    <h2 class="section-title">Gallery</h2>
+    <div class="gallery-grid">
+        <img src="https://via.placeholder.com/400x300" alt="Gallery 1">
+        <img src="https://via.placeholder.com/400x300" alt="Gallery 2">
+        <img src="https://via.placeholder.com/400x300" alt="Gallery 3">
+        <img src="https://via.placeholder.com/400x300" alt="Gallery 4">
+    </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+    <img src="" alt="Preview">
+</div>
+
+<section id="testimonials">
+    <h2 class="section-title">Testimoni Klien</h2>
+    <div class="testimonials-grid">
+        <div class="testimonial"><p>"KK FOTOCOPY sangat cepat dan profesional. Hasil cetakannya rapi sekali!"</p><h5>- Budi Santoso</h5></div>
+        <div class="testimonial"><p>"Pelayanan ramah, harga bersahabat, dan pengerjaan tepat waktu. Recommended!"</p><h5>- Siti Aulia</h5></div>
+        <div class="testimonial"><p>"Hasil fotokopi dan print dokumen saya sangat memuaskan. Sangat profesional."</p><h5>- Andi Wijaya</h5></div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2 class="section-title">Hubungi Kami</h2>
+    <?php if($success) echo '<p style="text-align:center;color:green;margin-bottom:15px;">'.$success.'</p>'; ?>
+    <form method="POST" action="#contact">
+        <input type="text" name="name" placeholder="Nama" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" placeholder="Pesan" rows="5" required></textarea>
+        <button type="submit">Kirim Pesan</button>
+    </form>
+</section>
+
+<footer>
+    <p>© <?php echo date('Y'); ?> KK FOTOCOPY | Cepat, Profesional, dan Modern</p>
+</footer>
+
+<script>
+// Hamburger toggle
+function toggleMenu() {
+    document.getElementById('nav-menu').classList.toggle('show');
+}
+
+// Smooth section highlight
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav ul li a");
+window.addEventListener("scroll", () => {
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if(scrollY >= sectionTop) current = section.getAttribute("id");
+    });
+    navLinks.forEach(a => { a.classList.remove("active"); if(a.getAttribute("href")=="#"+current) a.classList.add("active"); });
+});
+
+// Card & testimonial fade in
+const cards = document.querySelectorAll(".card");
+const testimonials = document.querySelectorAll(".testimonial");
+function fadeInElements() {
+    const triggerBottom = window.innerHeight * 0.85;
+    cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if(cardTop < triggerBottom) card.classList.add("visible");
+    });
+    testimonials.forEach(t => {
+        const tTop = t.getBoundingClientRect().top;
+        if(tTop < triggerBottom) t.classList.add("visible");
+    });
+}
+window.addEventListener("scroll", fadeInElements);
+window.addEventListener("load", fadeInElements);
+
+// Gallery lightbox
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = lightbox.querySelector("img");
+document.querySelectorAll(".gallery-grid img").forEach(img=>{
+    img.addEventListener("click", ()=>{
+        lightbox.classList.add("visible");
+        lightboxImg.src = img.src;
+    });
+});
+lightbox.addEventListener("click", ()=>{ lightbox.classList.remove("visible"); });
+</script>
+
+</body>
+</html>  

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Label Maker Pro Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* --- Reset & Body --- */
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#0f111a;color:#fff;scroll-behavior:smooth;}
+a{text-decoration:none;color:inherit;}
+
+/* --- Navbar --- */
+nav{position:sticky;top:0;width:100%;background:rgba(15,17,26,0.95);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:15px 30px;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,0.5);}
+nav .logo{font-size:1.6em;font-weight:700;color:#3b82f6;}
+nav ul{display:flex;gap:25px;list-style:none;}
+nav ul li a{font-weight:600;transition:0.3s;}
+nav ul li a:hover{color:#60a5fa;}
+
+/* --- Hero Section --- */
+header.hero{text-align:center;padding:100px 20px 60px;background: linear-gradient(135deg,#0f111a,#1e40af);position:relative;overflow:hidden;}
+header.hero h1{font-size:3em;font-weight:700;background:linear-gradient(90deg,#3b82f6,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px;animation:fadeInUp 1s ease forwards;}
+header.hero p{font-size:1.2em;margin-bottom:30px;color:#cbd5e1;animation:fadeInUp 1.2s ease forwards;}
+header.hero .cta-btn{padding:15px 30px;background:#3b82f6;border:none;border-radius:12px;font-weight:700;cursor:pointer;color:#fff;box-shadow:0 8px 20px rgba(59,130,246,0.5);transition:0.4s;}
+header.hero .cta-btn:hover{transform:scale(1.05);box-shadow:0 12px 30px rgba(59,130,246,0.7);}
+
+/* --- Main Section --- */
+main{max-width:1200px;margin:50px auto;padding:0 20px;}
+.section{margin-bottom:80px;}
+h2.section-title{font-size:2em;margin-bottom:30px;color:#60a5fa;text-align:center;}
+
+/* --- Generator Panel --- */
+.generator-container{display:flex;flex-wrap:wrap;justify-content:center;gap:40px;}
+.panel{background: rgba(255,255,255,0.05);backdrop-filter:blur(10px);border-radius:16px;padding:30px;box-shadow:0 8px 25px rgba(0,0,0,0.4);flex:1;min-width:320px;max-width:500px;transition:0.3s;}
+.panel:hover{transform:translateY(-5px);}
+.panel h3{color:#3b82f6;margin-bottom:15px;}
+label{display:block;margin-top:12px;margin-bottom:6px;font-weight:600;}
+input, select{width:100%;padding:12px 15px;border-radius:10px;border:1px solid #3b82f6;background:rgba(255,255,255,0.1);color:#fff;font-size:0.95em;transition:0.3s;}
+input::placeholder{color:#cbd5e1;}
+input:focus, select:focus{border-color:#60a5fa;outline:none;background:rgba(255,255,255,0.15);}
+button{margin-top:15px;padding:12px 20px;border:none;border-radius:12px;background:linear-gradient(90deg,#3b82f6,#60a5fa);color:#fff;font-weight:700;cursor:pointer;transition:0.4s;}
+button:hover{transform:scale(1.05);box-shadow:0 10px 25px rgba(59,130,246,0.6);}
+#preview{display:flex;flex-wrap:wrap;gap:20px;margin-top:20px;justify-content:center;}
+.label-box{border:2px solid #3b82f6;border-radius:14px;padding:15px;width:160px;height:110px;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(180deg,#1e3a8a,#3b82f6);box-shadow:0 8px 25px rgba(0,0,0,0.3);position:relative;transition:0.3s;cursor:grab;}
+.label-box:hover{transform:scale(1.05);}
+.label-text{text-align:center;font-weight:700;font-size:0.95em;color:#fff;}
+.qr-code{position:absolute;bottom:8px;right:8px;width:42px;height:42px;}
+
+/* --- Features --- */
+.features{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;}
+.feature-card{background: rgba(255,255,255,0.05);backdrop-filter:blur(8px);border-radius:16px;padding:20px;flex:1;min-width:250px;max-width:320px;box-shadow:0 8px 25px rgba(0,0,0,0.3);text-align:center;transition:0.3s;}
+.feature-card:hover{transform:translateY(-8px);}
+.feature-card h4{color:#60a5fa;margin-bottom:10px;}
+.feature-card p{color:#cbd5e1;font-size:0.95em;}
+
+/* --- Footer --- */
+footer{text-align:center;padding:25px;color:#94a3b8;background:#0f111a;border-top:1px solid #1e40af;}
+
+/* --- Animations --- */
+@keyframes fadeInUp{0%{opacity:0;transform:translateY(30px);}100%{opacity:1;transform:translateY(0);}}
+
+/* --- Responsive --- */
+@media(max-width:768px){.generator-container{flex-direction:column;}}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="logo">LabelMaker Pro</div>
+  <ul>
+    <li><a href="#generator">Generator</a></li>
+    <li><a href="#features">Fitur</a></li>
+    <li><a href="#about">Tentang</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <h1>Buat Label & QR Kode Profesional</h1>
+  <p>Cepat, Gratis, & Tanpa Ribet. Siap Untuk Digital & Cetak.</p>
+  <button class="cta-btn" onclick="document.getElementById('generator').scrollIntoView({behavior:'smooth'})">Mulai Sekarang</button>
+</header>
+
+<main>
+  <!-- Generator -->
+  <section id="generator" class="section">
+    <h2 class="section-title">Label Generator</h2>
+    <div class="generator-container">
+      <div class="panel">
+        <h3>Buat Labelmu</h3>
+        <label>Nama Produk</label>
+        <input type="text" id="productName" placeholder="Baso Aci">
+
+        <label>Harga</label>
+        <input type="text" id="productPrice" placeholder="Rp5.000">
+
+        <label>Ukuran Label</label>
+        <select id="labelSize">
+          <option value="160">160x110</option>
+          <option value="200">200x140</option>
+          <option value="240">240x160</option>
+        </select>
+
+        <label>Jumlah Label</label>
+        <input type="number" id="labelCount" value="2" min="1">
+
+        <label>QR Code (opsional, link)</label>
+        <input type="text" id="qrLink" placeholder="https://example.com">
+
+        <button id="generateBtn">Generate Label</button>
+        <button id="exportBtn">Export PDF</button>
+      </div>
+
+      <div class="panel">
+        <h3>Preview (Drag & Resize)</h3>
+        <div id="preview"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="section">
+    <h2 class="section-title">Fitur Unggulan</h2>
+    <div class="features">
+      <div class="feature-card">
+        <h4>Tanpa Login</h4>
+        <p>Langsung pakai, aman, dan cepat tanpa perlu database atau akun.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Profesional & Estetik</h4>
+        <p>Desain modern, tema biru-putih-hitam, siap cetak atau digital.</p>
+      </div>
+      <div class="feature-card">
+        <h4>QR Code Otomatis</h4>
+        <p>Pelanggan bisa scan langsung, cocok untuk toko online & event.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Flexible & Cepat</h4>
+        <p>Generate banyak label sekaligus, hemat waktu dan tenaga.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Penjelasan -->
+  <section id="about" class="section">
+    <h2 class="section-title">Cara Pakai & Kelebihan</h2>
+    <ol style="margin-left:20px;font-size:16px;line-height:1.6;">
+      <li><strong>Masukkan Nama / Teks:</strong> Tulis nama produk, jasa, atau teks yang ingin dicetak.</li>
+      <li><strong>Masukkan Link (Opsional):</strong> Jika ingin QR Code, isi link website, WhatsApp, atau media sosial.</li>
+      <li><strong>Klik Generate:</strong> Label profesional dengan QR Code akan muncul di preview.</li>
+      <li><strong>Download / Cetak:</strong> Bisa export PDF untuk cetak atau simpan sebagai gambar.</li>
+    </ol>
+    <p style="margin-top:20px;font-size:16px;color:#cbd5e1;">
+      Web ini cocok untuk UMKM, penjual online, event organizer, dan siapa pun yang butuh branding cepat & estetik.
+    </p>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer>© 2025 Label Maker Pro Premium — All rights reserved</footer>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.10.11/interact.min.js"></script>
+<script>
+// --- Label Generator ---
+const preview = document.getElementById('preview');
+const generateBtn = document.getElementById('generateBtn');
+const exportBtn = document.getElementById('exportBtn');
+
+function generateLabel(name, price, qrLink, size) {
+  const box = document.createElement('div');
+  box.className='label-box';
+  box.style.width=size+'px';
+  box.style.height=(size*0.7)+'px';
+  box.draggable=true;
+
+  const text=document.createElement('div');
+  text.className='label-text';
+  text.innerHTML=`${name}<br>${price}`;
+  box.appendChild(text);
+
+  if(qrLink){
+    const qrDiv=document.createElement('div');
+    qrDiv.className='qr-code';
+    box.appendChild(qrDiv);
+    new QRCode(qrDiv,{text:qrLink,width:42,height:42});
+  }
+
+  preview.appendChild(box);
+
+  // --- Drag & Resize ---
+  interact(box)
+    .draggable({inertia:true, modifiers:[interact.modifiers.restrict({restriction:preview})], listeners:{move:dragMoveListener}})
+    .resizable({edges:{left:true,right:true,bottom:true,top:true}, modifiers:[interact.modifiers.restrictSize({min:{width:80,height:55},max:{width:400,height:280}})], listeners:{move:resizeMoveListener}});
+}
+
+function dragMoveListener(event){
+  const target=event.target;
+  const x=(parseFloat(target.getAttribute('data-x'))||0)+event.dx;
+  const y=(parseFloat(target.getAttribute('data-y'))||0)+event.dy;
+  target.style.transform=`translate(${x}px, ${y}px)`;
+  target.setAttribute('data-x',x);
+  target.setAttribute('data-y',y);
+}
+
+function resizeMoveListener(event){
+  const target=event.target;
+  let {width,height}=event.rect;
+  target.style.width=width+'px';
+  target.style.height=height+'px';
+  const x=(parseFloat(target.getAttribute('data-x'))||0)+event.deltaRect.left;
+  const y=(parseFloat(target.getAttribute('data-y'))||0)+event.deltaRect.top;
+  target.style.transform=`translate(${x}px, ${y}px)`;
+  target.setAttribute('data-x',x);
+  target.setAttribute('data-y',y);
+}
+
+generateBtn.addEventListener('click', ()=>{
+  preview.innerHTML='';
+  const name=document.getElementById('productName').value||'Produk';
+  const price=document.getElementById('productPrice').value||'Rp0';
+  const size=parseInt(document.getElementById('labelSize').value);
+  const count=parseInt(document.getElementById('labelCount').value);
+  const qrLink=document.getElementById('qrLink').value;
+  for(let i=0;i<count;i++){generateLabel(name,price,qrLink,size);}
+});
+
+exportBtn.addEventListener('click', async ()=>{
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation:'landscape', unit:'px', format:[800,600] });
+  const boxes = preview.querySelectorAll('.label-box');
+  let x=10, y=10;
+  for(let i=0;i<boxes.length;i++){
+    const box = boxes[i];
+    const canvas = await html2canvas(box);
+    const imgData = canvas.toDataURL('image/png');
+    doc.addImage(imgData,'PNG',x,y,box.offsetWidth,box.offsetHeight);
+    x+=box.offsetWidth+10;
+    if(x+box.offsetWidth>780){x=10;y+=box.offsetHeight+10;}
+  }
+  doc.save('labels.pdf');
+});
+</script>
+</body>
+</html>

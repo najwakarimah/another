@@ -1,0 +1,80 @@
+<?php
+// welcome.php - KK Printing full PHP, tanpa HTML sama sekali
+
+function render_header() {
+    echo "<header>";
+    echo "<div style='display:flex; justify-content:space-between; align-items:center; padding:16px; background:linear-gradient(90deg,#002f6c,#c8102e); color:white;'>";
+    echo "<div style='display:flex; align-items:center; gap:12px;'>";
+    echo "<img src='assets/img/logo.png' alt='Logo' style='width:48px;height:48px; padding:6px; background:#fff; border-radius:6px;'>";
+    echo "<div><h1>KK Printing</h1><small>Percetakan & Solusi Desain</small></div>";
+    echo "</div>";
+    echo "<div>";
+    echo "<a href='tel:+6281234567890' style='color:#002f6c; font-weight:700; background:#fff; padding:8px 12px; border-radius:8px; text-decoration:none;'>0812-3456-7890</a>";
+    echo "</div>";
+    echo "</div>";
+    echo "</header>";
+}
+
+function render_hero() {
+    echo "<section style='padding:80px 20px; text-align:center; background:linear-gradient(180deg,rgba(0,47,108,0.9),rgba(200,16,30,0.85)); color:white;'>";
+    echo "<h2>Cetak Cepat, Hasil Premium — KK Printing</h2>";
+    echo "<p>Layanan percetakan digital & offset untuk kartu nama, brosur, banner, kemasan, sablon, dan desain.</p>";
+    echo "<div>";
+    echo "<a href='#contact' style='padding:12px 20px; border-radius:8px; text-decoration:none; font-weight:700; background:white; color:#002f6c; margin-right:10px;'>Pesan Sekarang</a>";
+    echo "<a href='#services' style='padding:12px 20px; border-radius:8px; text-decoration:none; font-weight:700; border:2px solid rgba(255,255,255,0.14); color:white;'>Lihat Layanan</a>";
+    echo "</div>";
+    echo "</section>";
+}
+
+function render_services() {
+    echo "<section style='padding:50px 20px;'>";
+    echo "<h3>Layanan Percetakan</h3>";
+    $services = [
+        ['icon'=>'🖨️','title'=>'Cetak Digital & Offset','desc'=>'Kartu nama, brosur, katalog.'],
+        ['icon'=>'📜','title'=>'Banner & Large Format','desc'=>'Spanduk, roll-up, outdoor printing.'],
+        ['icon'=>'👕','title'=>'Sablon & Merchandise','desc'=>'Kaos, totebag, mug custom.']
+    ];
+    foreach ($services as $s) {
+        echo "<div style='background:#fff; padding:20px; border-radius:12px; margin-top:20px; text-align:center; box-shadow:0 6px 18px rgba(16,24,40,0.06);'>";
+        echo "<div style='font-size:28px;'>{$s['icon']}</div>";
+        echo "<h4 style='color:#c8102e;'>{$s['title']}</h4>";
+        echo "<p style='color:#6b7280;'>{$s['desc']}</p>";
+        echo "</div>";
+    }
+    echo "</section>";
+}
+
+function render_contact_form() {
+    echo "<section id='contact' style='padding:50px 20px;'>";
+    echo "<h3>Kontak & Order Cepat</h3>";
+    echo "<form method='POST' action=''>";
+    echo "<input type='text' name='nama' placeholder='Nama Anda' required style='width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #e6e9ef;'>";
+    echo "<input type='email' name='email' placeholder='Email' required style='width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #e6e9ef;'>";
+    echo "<input type='text' name='hp' placeholder='Nomor HP / WhatsApp' required style='width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #e6e9ef;'>";
+    echo "<textarea name='pesan' rows='4' placeholder='Deskripsikan pesanan...' required style='width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #e6e9ef;'></textarea>";
+    echo "<button type='submit' style='width:100%; padding:12px; border-radius:8px; border:none; background:linear-gradient(90deg,#002f6c,#c8102e); color:#fff; font-weight:700; cursor:pointer;'>Kirim Permintaan</button>";
+    echo "</form>";
+    echo "<div style='margin-top:12px;'>";
+    echo "<p>WA: <a href='https://wa.me/6281234567890' target='_blank'>0812-3456-7890</a></p>";
+    echo "<p>Email: kkprinting@example.com</p>";
+    echo "<p>Alamat: Jl. Contoh No.12, Kota</p>";
+    echo "</div>";
+    echo "</section>";
+}
+
+function render_footer() {
+    echo "<footer style='background:#002f6c; color:white; padding:30px 20px; margin-top:30px;'>";
+    echo "<div style='display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;'>";
+    echo "<div><h4>KK Printing</h4><p style='font-size:0.9rem; color:#d1d7e6;'>Percetakan profesional. © ".date('Y')."</p></div>";
+    echo "<div><h4>Layanan</h4><ul style='list-style:none; padding-left:0;'><li>Cetak Digital</li><li>Banner</li><li>Sablon</li></ul></div>";
+    echo "<div><h4>Kontak</h4><ul style='list-style:none; padding-left:0;'><li>WA: 0812-3456-7890</li><li>Email: kkprinting@example.com</li></ul></div>";
+    echo "</div>";
+    echo "</footer>";
+}
+
+// Jalankan semua fungsi
+render_header();
+render_hero();
+render_services();
+render_contact_form();
+render_footer();

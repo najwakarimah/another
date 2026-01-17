@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Najwa Karimah Nafisah — CV & Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#e8f6ff;
+    --card:#ffffff;
+    --blue-1:#0ea5ff;
+    --blue-2:#2563eb;
+    --muted:#5b6b84;
+    --glass: rgba(255,255,255,0.7);
+    --accent:#60a5fa;
+    --shadow: 0 12px 30px rgba(16,24,40,0.08);
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,#f6fbff,var(--bg));font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;color:#0b2038; -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  a{color:inherit}
+  /* layout */
+  .wrap{max-width:1100px;margin:28px auto;padding:20px}
+  nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border-radius:12px;background:linear-gradient(90deg,var(--card),rgba(255,255,255,0.9));box-shadow:var(--shadow);position:sticky;top:18px;z-index:30}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{
+    width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--blue-1),var(--blue-2));
+    display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-family:'Playfair Display',serif;font-size:18px;box-shadow:0 6px 16px rgba(37,99,235,0.16)
+  }
+  .brand h1{font-size:16px;margin:0;color:var(--blue-2)}
+  .navlinks{display:flex;gap:16px;align-items:center}
+  .navlinks a{font-weight:600;color:var(--muted);padding:8px;border-radius:8px}
+  .navlinks a:hover{background:linear-gradient(90deg, rgba(96,165,250,0.12), rgba(96,165,250,0.06));color:var(--blue-2)}
+  .hero{
+    display:grid;grid-template-columns: 320px 1fr;gap:28px;align-items:center;margin-top:20px;
+  }
+  @media(max-width:900px){ .hero{grid-template-columns:1fr} .brand h1{display:none} .navlinks{display:none} }
+
+  /* left card (profile) */
+  .card{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);overflow:hidden}
+  .profile-photo{
+    width:280px;height:280px;border-radius:18px;background:linear-gradient(180deg,#fff,#f0f9ff);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    position:relative;margin:auto;box-shadow:0 10px 30px rgba(14,165,233,0.08);border:1px solid rgba(37,99,235,0.06)
+  }
+  .profile-photo img{width:86%;height:86%;object-fit:cover;border-radius:12px;box-shadow:0 10px 28px rgba(14,165,233,0.06)}
+  .name{font-family:'Playfair Display',serif;font-size:22px;color:var(--blue-2);margin-top:12px;text-align:center}
+  .title{font-weight:600;color:var(--muted);font-size:13px;text-align:center;margin-bottom:10px}
+  .contact-list{margin-top:12px;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted)}
+  .chip{display:flex;gap:8px;align-items:center;background:linear-gradient(90deg, rgba(96,165,250,0.06), rgba(37,99,235,0.03));padding:8px;border-radius:10px}
+  .chip strong{color:var(--blue-2)}
+
+  /* right content */
+  .content{display:flex;flex-direction:column;gap:18px}
+  .about{background:linear-gradient(180deg,rgba(236,249,255,0.6),rgba(255,255,255,0.6));padding:18px;border-radius:12px;border:1px solid rgba(14,165,233,0.06)}
+  .about p{margin:0;color:#133047;line-height:1.6}
+  .section{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(14,165,233,0.04);box-shadow:0 8px 18px rgba(2,6,23,0.04)}
+  .section h3{margin:0 0 12px 0;color:var(--blue-2);font-size:18px}
+
+  /* skills */
+  .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(max-width:700px){ .skills{grid-template-columns:1fr} }
+  .skill{display:flex;flex-direction:column;gap:8px}
+  .skill .meta{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);align-items:center}
+  .bar{height:10px;background:rgba(14,165,233,0.08);border-radius:999px;overflow:hidden}
+  .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--blue-1),var(--blue-2));width:0%;transition:width 1s cubic-bezier(.2,.9,.3,1)}
+
+  /* experience timeline */
+  .timeline{display:flex;flex-direction:column;gap:12px}
+  .entry{display:flex;gap:12px;align-items:flex-start}
+  .dot{width:12px;height:12px;border-radius:12px;background:linear-gradient(90deg,var(--blue-1),var(--blue-2));margin-top:6px;box-shadow:0 6px 18px rgba(37,99,235,0.12)}
+  .entry .body{flex:1}
+  .entry .body h4{margin:0;font-size:15px;color:#0e2b49}
+  .entry .body p{margin:6px 0;color:var(--muted);font-size:14px}
+  .entry .meta{font-size:13px;color:#2b4b66}
+
+  /* education */
+  .edu-list{display:flex;flex-direction:column;gap:10px}
+  .edu{padding:10px;border-radius:10px;background:linear-gradient(180deg,rgba(14,165,233,0.03),rgba(37,99,235,0.02))}
+
+  /* contact form small */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:700px){ .contact-grid{grid-template-columns:1fr} }
+  input[type="text"], input[type="email"], textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(14,165,233,0.12);background:rgba(255,255,255,0.9)}
+  textarea{min-height:100px;resize:vertical}
+  .cta-row{display:flex;gap:12px;align-items:center;margin-top:8px}
+  .btn{padding:10px 14px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--blue-1),var(--blue-2));color:white;font-weight:700;cursor:pointer}
+  .btn.secondary{background:transparent;border:1px solid rgba(14,165,233,0.12);color:var(--blue-2)}
+
+  /* misc */
+  .tools{display:flex;gap:10px;flex-wrap:wrap}
+  .pill{padding:8px 12px;border-radius:999px;background:linear-gradient(90deg,rgba(96,165,250,0.08),rgba(37,99,235,0.04));font-weight:600}
+
+  footer{margin-top:26px;padding:18px;text-align:center;color:var(--muted);font-size:14px}
+  /* reveal animations */
+  .reveal{opacity:0;transform:translateY(18px);transition:all .7s cubic-bezier(.2,.9,.3,1);will-change:transform,opacity}
+  .reveal.show{opacity:1;transform:none}
+
+  /* decorative blob */
+  .blob{
+    position:absolute;right:-60px;top:-50px;width:300px;height:300px;border-radius:40%;background:radial-gradient(circle at 30% 30%, rgba(99,102,241,0.14), rgba(14,165,233,0.08));filter:blur(28px);z-index:0;pointer-events:none;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <div class="brand">
+        <div class="logo">NK</div>
+        <div>
+          <h1>Najwa Karimah Nafisah</h1>
+          <div style="font-size:12px;color:var(--muted)">Mahasiswa Informatika • Coding Teacher • Digital Business</div>
+        </div>
+      </div>
+
+      <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#exp">Experience</a>
+        <a href="#edu">Education</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <!-- left profile card -->
+      <div class="card reveal" id="cardProfile" style="position:relative;">
+        <div class="blob" aria-hidden="true"></div>
+        <div class="profile-photo" role="img" aria-label="Photo Najwa">
+          <!-- replace src with actual photo if available -->
+          <!-- <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=4d8b6a0c2a4f0f2f5f7a6a6fb7c3a1ce" alt="Najwa Karimah Nafisah"> -->
+        <img src="c:\Users\Najwa karimah\Pictures\IMG-20241221-WA0167.jpg" alt="">
+          <div class="name">Najwa Karimah Nafisah</div>
+          <div class="title">Mahasiswa Informatika • Coding Teacher • Digital Business</div>
+        </div>
+
+        <div style="margin-top:14px" class="contact-list">
+          <div class="chip"><span style="font-size:14px">📍</span> <div><strong>Sidoarjo</strong><div style="font-size:12px;color:var(--muted)">Kwadengan Timur RT1 RW1</div></div></div>
+          <div class="chip"><span>📞</span> <div><strong>0895-6326-67797</strong><div style="font-size:12px;color:var(--muted)">WhatsApp / Telepon</div></div></div>
+          <div class="chip"><span>✉️</span> <div><strong>najwakarimahh03@gmail.com</strong><div style="font-size:12px;color:var(--muted)">Email</div></div></div>
+          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+            <!-- <a class="pill" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+            <a class="pill" href="https://youtube.com/" target="_blank" rel="noopener">YouTube (9K)</a> -->
+            <a class="pill" href="https://linktr.ee/officiallynana?fbclid=PAZXh0bgNhZW0CMTEAAadJfNlGNtoGHKx57ReA6JGg7cV251doraWCJh98bwxvM2ZzdvOvsBHJzHmPPw_aem_XIdGkpSBRejnng27yFsYEg" target="_blank" rel="noopener">Linktree</a>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;display:flex;gap:10px;justify-content:center">
+          <button class="btn" id="downloadPdfBtn">Download PDF</button>
+          <button class="btn secondary" id="printBtn">Print</button>
+        </div>
+      </div>
+
+      <!-- right content -->
+      <div class="content">
+        <div class="about section reveal" id="about">
+          <h3>About Me</h3>
+          <p>
+            Saya Najwa (18 tahun), Mahasiswa Informatika (kuliah malam). Lulusan SMK Rekayasa Perangkat Lunak, berpengalaman mengajar coding untuk anak SD, membuat konten digital, dan mengelola bisnis online.
+            Saya teliti, komunikatif, disiplin, dan cepat beradaptasi. Siap bekerja remote maupun onsite.
+          </p>
+        </div>
+
+        <div class="section reveal" id="skills">
+          <h3>Core Skills</h3>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px">
+            <div class="pill">Teaching & Curriculum</div>
+            <div class="pill">Web Dev-HTML/CSS/JS/PHP/PYTHON/RUST</div>
+            <div class="pill">Content Creation</div>
+            <div class="pill">Digital Marketing</div>
+            <div class="pill">Canva • Figma • CapCut</div>
+          </div>
+
+          <div class="skills">
+            <div class="skill">
+              <div class="meta"><div>HTML / CSS / JS</div><div>96%</div></div>
+              <div class="bar"><i data-w="96%"></i></div>
+            </div>
+            <div class="skill">
+              <div class="meta"><div>Teaching & Curriculum</div><div>95%</div></div>
+              <div class="bar"><i data-w="95%"></i></div>
+            </div>
+            <div class="skill">
+              <div class="meta"><div>Digital Marketing</div><div>95%</div></div>
+              <div class="bar"><i data-w="95%"></i></div>
+            </div>
+            <div class="skill">
+              <div class="meta"><div>Content & Video Editing</div><div>85%</div></div>
+              <div class="bar"><i data-w="85%"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section reveal" id="exp">
+          <h3>Experience</h3>
+          <div class="timeline">
+            <div class="entry">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="body">
+                <h4>Guru Coding, Game, & AI — SDN Lemahputro 3</h4>
+                <div class="meta">Agustus – Oktober 2025</div>
+                <p>Mengajar logika pemrograman & AI dasar, menyusun modul visual, memimpin project showcase siswa.</p>
+              </div>
+            </div>
+
+            <div class="entry">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="body">
+                <h4>Founder & Owner — WONGSIGMA</h4>
+                <div class="meta">2022 – Sekarang</div>
+                <p>Mengelola bisnis kuliner & merchandise; memimpin tim, operasional, digital marketing, dan strategi penjualan.</p>
+              </div>
+            </div>
+
+            <div class="entry">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="body">
+                <h4>Content Creator & YouTube</h4>
+                <div class="meta">2022 – Sekarang</div>
+                <p>Mengelola channel hiburan dengan 9K subscribers; membuat strategi konten, editing, dan monitoring engagement.</p>
+              </div>
+            </div>
+
+            <div class="entry">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="body">
+                <h4>Front-End Developer & Freelance</h4>
+                <div class="meta">2024 – Sekarang</div>
+                <p>Pembuatan website responsif, landing page, dan desain implementasi dari Figma.</p>
+              </div>
+            </div>
+
+            <!-- <div class="entry">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="body">
+                <h4>Guru & Tutor Online (Freelance)</h4>
+                <div class="meta">2021 – Sekarang</div>
+                <p>Bimbingan siswa Scratch & Python dasar; pembuatan modul & project mini edukatif.</p>
+              </div>
+            </div> -->
+
+          </div>
+        </div>
+
+        <div class="section reveal" id="edu">
+          <h3>Education</h3>
+          <div class="edu-list">
+            <div class="edu">
+              <strong>Universitas Muhammadiyah Sidoarjo</strong><div style="font-size:13px;color:var(--muted)">Informatika — Kuliah Malam (2025 — Sekarang)</div>
+            </div>
+            <div class="edu">
+              <strong>SMKN 2 Buduran</strong><div style="font-size:13px;color:var(--muted)">Rekayasa Perangkat Lunak (Lulus 2024)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section reveal" id="goal">
+          <h3>Career Goal</h3>
+          <p>
+            Saya ingin mengembangkan karier di bidang pendidikan teknologi dan digital kreatif — menggabungkan pengajaran coding, pembuatan produk digital, dan strategi pemasaran untuk menghasilkan dampak nyata.
+            Target saya: posisi sebagai <strong>Guru Coding / Tutor Online / Front-End Developer / Content Strategist</strong> yang memungkinkan kontribusi pada pendidikan dan inovasi digital.
+          </p>
+        </div>
+
+        <div class="section reveal" id="contact">
+          <h3>Contact & Quick Message</h3>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a class="btn" href="mailto:najwakarimahh03@gmail.com?subject=Hi%20Najwa" target="_blank">✉️ Email</a>
+            <a class="btn" href="https://wa.me/62895632667797" target="_blank">💬 WhatsApp</a>
+            <a class="btn secondary" href="tel:+62895632667797">📞 Call</a>
+          </div>
+
+          <div style="margin-top:14px">
+            <form id="contactForm" onsubmit="return false;">
+              <div class="contact-grid">
+                <input type="text" id="cf-name" placeholder="Nama Anda" required>
+                <input type="email" id="cf-email" placeholder="Email Anda" required>
+              </div>
+              <div style="margin-top:8px">
+                <input type="text" id="cf-subject" placeholder="Subjek">
+              </div>
+              <div style="margin-top:8px">
+                <textarea id="cf-message" placeholder="Pesan singkat..."></textarea>
+              </div>
+              <div class="cta-row">
+                <button class="btn" id="cf-send">Kirim Pesan</button>
+                <button class="btn secondary" id="cf-save">Simpan (local)</button>
+                <div id="cf-note" style="margin-left:8px;color:var(--muted);font-size:13px"></div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <footer>
+      © 2025 Najwa Karimah Nafisah — CV & Portfolio • Designed with care
+    </footer>
+  </div>
+
+  <!-- External libs for PDF/print -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+/* Interactive JS for CV:
+   - reveal on scroll
+   - animate skill bars
+   - contact form local save & quick send (mailto)
+   - download PDF of the CV (right column + profile)
+   - print
+*/
+
+// reveal elements
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(ent=>{
+    if(ent.isIntersecting) ent.target.classList.add('show');
+  });
+},{threshold: 0.15});
+reveals.forEach(r=>io.observe(r));
+
+// animate skill bars when in view
+const bars = document.querySelectorAll('.bar > i');
+const barsIO = new IntersectionObserver(entries=>{
+  entries.forEach(ent=>{
+    if(ent.isIntersecting){
+      const el = ent.target;
+      const w = el.dataset.w || '70%';
+      el.style.width = w;
+      barsIO.unobserve(el);
+    }
+  });
+},{threshold:0.3});
+bars.forEach(b=>barsIO.observe(b));
+
+// Contact form: save to localStorage & quick mailto
+const cfSend = document.getElementById('cf-send');
+const cfSave = document.getElementById('cf-save');
+const cfNote = document.getElementById('cf-note');
+
+cfSave.addEventListener('click', ()=>{
+  const data = {
+    name: document.getElementById('cf-name').value,
+    email: document.getElementById('cf-email').value,
+    subject: document.getElementById('cf-subject').value,
+    message: document.getElementById('cf-message').value,
+    time: new Date().toISOString()
+  };
+  if(!data.name || !data.email){ cfNote.textContent = 'Nama & Email diperlukan untuk menyimpan.'; return; }
+  let arr = JSON.parse(localStorage.getItem('cv_messages')||'[]');
+  arr.push(data);
+  localStorage.setItem('cv_messages', JSON.stringify(arr));
+  cfNote.textContent = 'Tersimpan di browser (local).';
+  setTimeout(()=> cfNote.textContent = '', 3000);
+});
+
+// quick send via mailto (opens user email client)
+cfSend.addEventListener('click', ()=>{
+  const name = document.getElementById('cf-name').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const subject = document.getElementById('cf-subject').value.trim() || 'Halo Najwa';
+  const msg = document.getElementById('cf-message').value.trim();
+  if(!name || !email || !msg){ cfNote.textContent = 'Isi Nama, Email & Pesan sebelum mengirim.'; setTimeout(()=>cfNote.textContent='',3000); return; }
+  const body = encodeURIComponent(`Pesan dari: ${name}\nEmail: ${email}\n\n${msg}`);
+  window.location.href = `mailto:najwakarimahh03@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+});
+
+// PDF generation (html2canvas + jsPDF)
+document.getElementById('downloadPdfBtn').addEventListener('click', async ()=>{
+  // build a simple printable area: the whole .wrap
+  const wrap = document.querySelector('.wrap');
+  const originalBg = document.body.style.background;
+  // Temporarily set background white for PDF clarity
+  document.body.style.background = '#ffffff';
+  // enlarge for high-res canvas
+  const scale = 2;
+  const opts = { scale: scale, useCORS: true, logging: false, windowWidth: wrap.clientWidth };
+  try{
+    const canvas = await html2canvas(wrap, opts);
+    const imgData = canvas.toDataURL('image/png');
+    const { jsPDF } = window.jspdf;
+    // A4 in px at 96dpi approx: 794 x 1123, but we'll fit image to PDF page
+    const pdf = new jsPDF({ unit:'px', format: 'a4' });
+    const pdfW = pdf.internal.pageSize.getWidth();
+    const pdfH = pdf.internal.pageSize.getHeight();
+    // scale image to fit width
+    const imgW = pdfW - 40; // margin
+    const imgH = canvas.height * (imgW / canvas.width);
+    pdf.addImage(imgData, 'PNG', 20, 20, imgW, imgH);
+    pdf.save('CV_Najwa_Karimah_Nafisah.pdf');
+  }catch(err){
+    alert('Gagal membuat PDF: ' + err);
+  } finally {
+    document.body.style.background = originalBg;
+  }
+});
+
+// Print button
+document.getElementById('printBtn').addEventListener('click', ()=>{
+  window.print();
+});
+
+// small UX: keyboard 'p' to print
+document.addEventListener('keydown', (e)=>{
+  if((e.ctrlKey||e.metaKey) && e.key.toLowerCase() === 'p'){
+    e.preventDefault();
+    window.print();
+  }
+});
+
+// Accessibility: focus outline for keyboard users
+document.addEventListener('keyup', e=>{
+  if(e.key === 'Tab') document.body.classList.add('show-focus');
+});
+</script>
+</body>
+</html>

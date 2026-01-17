@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Undangan Ulang Tahun Nana • 19th</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#e0f2ff;
+  --card:#ffffff;
+  --accent:#4a90e2;
+  --accent-2:#cde7ff;
+  --muted:#555;
+  --shadow:0 12px 30px rgba(0,0,0,0.08);
+}
+*{box-sizing:border-box;}
+html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#fff);font-family:'Quicksand',sans-serif;color:#222;}
+.wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px;}
+
+/* Card layout */
+.app{width:100%;max-width:1100px;display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start;}
+@media(max-width:980px){.app{grid-template-columns:1fr;max-width:760px;}}
+
+/* Splash */
+#splash{position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg,#d0edff,#c0e4ff); z-index:9999; transition:opacity .8s ease;}
+.cover{text-align:center;background:linear-gradient(180deg,rgba(255,255,255,0.8),rgba(255,255,255,0.9)); padding:40px; border-radius:16px; box-shadow:var(--shadow); width:min(92%,720px);}
+.cover h1{font-family:'Playfair Display',serif;margin:0;font-size:36px;color:var(--accent);}
+.cover p{margin:8px 0 20px;color:var(--muted);}
+.btn{background:var(--accent);color:white;border:none;padding:12px 24px;border-radius:40px;font-weight:600;cursor:pointer;box-shadow:0 8px 22px rgba(74,144,226,0.16);transition:transform .18s;}
+.btn:active{transform:translateY(2px);}
+.subtitle{font-size:14px;color:#333;margin-top:6px;}
+
+/* Left main panel */
+.card{background:var(--card);padding:22px;border-radius:14px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.03);}
+.hero{display:flex;gap:18px;align-items:center;}
+.hero .poster{width:140px;height:140px;border-radius:12px;background:linear-gradient(180deg,var(--accent-2),#fff);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display';font-size:28px;color:var(--accent);box-shadow:0 8px 30px rgba(74,144,226,0.08);}
+.hero .meta h2{margin:0;font-family:'Playfair Display';font-size:26px;color:#222;}
+.meta p{margin:6px 0;color:var(--muted);font-size:14px;}
+
+/* Countdown */
+.countdown{display:flex;gap:12px;margin-top:18px;}
+.countdown .unit{background:linear-gradient(180deg,#fff,#f0faff);padding:12px 14px;border-radius:10px;min-width:72px;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,0.04);}
+.unit .num{font-size:20px;font-weight:700;color:var(--accent);}
+.unit .label{font-size:12px;color:#666;margin-top:6px;}
+
+/* About */
+.about{margin-top:18px;color:#444;line-height:1.6;}
+.about .note{margin-top:12px;font-size:14px;color:#333;background:linear-gradient(90deg, rgba(74,144,226,0.06), rgba(205,231,255,0.06));padding:10px;border-radius:8px;}
+
+/* Gallery */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px;}
+.gallery img{width:100%;height:100px;object-fit:cover;border-radius:8px;cursor:pointer;transition:transform .18s;}
+.gallery img:hover{transform:scale(1.03);}
+
+/* Map */
+.map{margin-top:16px;border-radius:10px;overflow:hidden;border:1px solid rgba(0,0,0,0.04);}
+.addr{margin-top:8px;color:var(--muted);font-size:14px;}
+
+/* RSVP */
+.rsvp{margin-top:18px;display:flex;flex-direction:column;gap:8px;}
+.rsvp input, .rsvp select, .rsvp textarea{padding:10px;border-radius:8px;border:1px solid #d0e5ff;font-size:14px;}
+.rsvp button{background:var(--accent);color:white;border:none;padding:10px;border-radius:10px;cursor:pointer;font-weight:600;}
+.rsvp .msg{font-size:13px;color:green;display:none;}
+
+/* Right panel */
+.side-head{display:flex;align-items:center;justify-content:space-between;}
+.side-head h3{margin:0;font-family:'Playfair Display';color:var(--accent);}
+.rules{margin-top:14px;background:linear-gradient(90deg,rgba(208,229,255,0.6),rgba(240,250,255,0.6));padding:12px;border-radius:10px;color:#3a3a3a;}
+.guestlist{margin-top:12px;max-height:240px;overflow:auto;padding:8px;background:rgba(0,0,0,0.01);border-radius:10px;}
+.guest{display:flex;justify-content:space-between;padding:8px;border-bottom:1px dashed rgba(0,0,0,0.03);font-size:14px;color:#3b3b3b;}
+.footer{margin-top:12px;color:var(--muted);font-size:13px;text-align:center;}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;padding:20px;z-index:999;opacity:0;pointer-events:none;transition:opacity .18s;}
+.lightbox.show{opacity:1;pointer-events:auto;}
+.lightbox img{max-width:90%;max-height:90%;border-radius:10px;}
+
+@media(max-width:980px){.hero{flex-direction:row;}.gallery img{height:80px;}.poster{width:100px;height:100px;}}
+@media(max-width:560px){.gallery{grid-template-columns:repeat(2,1fr);}.countdown{flex-wrap:wrap;}}
+</style>
+</head>
+<body>
+
+<!-- Splash -->
+<div id="splash">
+  <div class="cover">
+    <h1>Undangan Ulang Tahun Nana • 19th</h1>
+    <p>12 Maret 2026 — 18:00 WIB</p>
+    <p>Tempat: Gacoan Candi SDA</p>
+    <button class="btn" id="openBtn">Buka Undangan</button>
+  </div>
+</div>
+
+<div class="wrap" id="mainContent" style="display:none;">
+  <div class="app">
+    <div class="card">
+      <div class="hero">
+        <div class="poster">NANA</div>
+        <div class="meta">
+          <h2>Nana • 19th Birthday</h2>
+          <p>12 Maret 2026 • 18:00 WIB — Gacoan Candi SDA</p>
+          <div style="margin-top:8px;color:var(--muted);font-size:13px">Dress code: Casual & rapi — datang tepat waktu</div>
+        </div>
+      </div>
+
+      <div class="countdown" id="countdown">
+        <div class="unit"><div class="num" id="cd-days">0</div><div class="label">Hari</div></div>
+        <div class="unit"><div class="num" id="cd-hours">0</div><div class="label">Jam</div></div>
+        <div class="unit"><div class="num" id="cd-mins">0</div><div class="label">Menit</div></div>
+        <div class="unit"><div class="num" id="cd-secs">0</div><div class="label">Detik</div></div>
+      </div>
+
+      <div class="about">
+        <p>Hai! Nana akan merayakan ulang tahunnya yang ke-19. Kami mengundang teman dan keluarga untuk hadir dan merayakan kebersamaan, tawa, dan kenangan baru.</p>
+        <div class="note">
+          <strong>Syarat & Catatan:</strong>
+          <ul style="margin:8px 0 0 18px;color:#3b3b3b">
+            <li>Datang tepat waktu (acara dimulai pukul 18:00).</li>
+            <li>Konfirmasi kehadiran melalui RSVP.</li>
+            <li>Jaga sopan santun & suasana hangat.</li>
+            <li>Jika membawa tamu, tulis jumlah di form RSVP.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin-top:16px;font-family:'Playfair Display',serif;color:#4a90e2">Galeri</h3>
+      <div class="gallery" id="gallery">
+        <img src="https://picsum.photos/seed/nana1/400/300" alt="foto1">
+        <img src="https://picsum.photos/seed/nana2/400/300" alt="foto2">
+        <img src="https://picsum.photos/seed/nana3/400/300" alt="foto3">
+      </div>
+      <div class="lightbox" id="lightbox"><img src="" alt="large"></div>
+
+      <h3 style="margin-top:18px;font-family:'Playfair Display',serif;color:#4a90e2">Lokasi</h3>
+      <div class="map">
+        <iframe src="https://www.google.com/maps?q=Gacoan+Candi+SDA&output=embed" width="100%" height="260" style="border:0" loading="lazy"></iframe>
+      </div>
+      <div class="addr">Gacoan Candi SDA — Jl. (cek lokasi di peta)</div>
+
+      <div style="margin-top:18px">
+        <h3 style="font-family:'Playfair Display',serif;color:#4a90e2">Konfirmasi Kehadiran</h3>
+        <div class="rsvp">
+          <input id="guestName" placeholder="Nama Anda">
+          <input id="guestCount" type="number" min="1" placeholder="Jumlah tamu (termasuk Anda)" value="1">
+          <select id="statusSelect">
+            <option value="hadir">Hadir</option>
+            <option value="tidak">Tidak Bisa Hadir</option>
+          </select>
+          <textarea id="note" placeholder="Catatan / pesan (opsional)" rows="2"></textarea>
+          <button id="sendRSVP">Kirim RSVP</button>
+          <div class="msg" id="rsvpMsg">Terima kasih! Konfirmasi Anda sudah tercatat.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Musik autoplay -->
+<iframe id="audioYT" src="https://www.youtube.com/embed/gKQHPd7-bIs?autoplay=1&loop=1&playlist=gKQHPd7-bIs&controls=0&mute=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+
+
+<script>
+// Splash open + main
+const openBtn = document.getElementById('openBtn');
+const splash = document.getElementById('splash');
+const mainContent = document.getElementById('mainContent');
+const bgMusic = document.getElementById('bgMusic');
+
+openBtn.addEventListener('click', ()=>{
+  splash.style.opacity='0';
+  setTimeout(()=>{
+    splash.style.display='none';
+    mainContent.style.display='flex';
+    bgMusic.play();
+  },800);
+});
+
+// Countdown
+function countdownTimer(){
+  const target = new Date("March 12, 2026 18:00:00").getTime();
+  const now = new Date().getTime();
+  const diff = target - now;
+  if(diff<0)return;
+  document.getElementById('cd-days').innerText = Math.floor(diff/(1000*60*60*24));
+  document.getElementById('cd-hours').innerText = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  document.getElementById('cd-mins').innerText = Math.floor((diff%(1000*60*60))/(1000*60));
+  document.getElementById('cd-secs').innerText = Math.floor((diff%(1000*60))/1000);
+}
+setInterval(countdownTimer,1000);
+countdownTimer();
+
+// Lightbox gallery
+const gallery = document.getElementById('gallery');
+const lightbox = document.getElementById('lightbox');
+const lightImg = lightbox.querySelector('img');
+gallery.querySelectorAll('img').forEach(img=>{
+  img.addEventListener('click', ()=>{
+    lightImg.src = img.src;
+    lightbox.classList.add('show');
+  });
+});
+lightbox.addEventListener('click', ()=>{lightbox.classList.remove('show');});
+
+// RSVP
+document.getElementById('sendRSVP').addEventListener('click',()=>{
+  document.getElementById('rsvpMsg').style.display='block';
+});
+
+</script>
+
+</body>
+</html>

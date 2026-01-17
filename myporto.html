@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Najwa Karimah Nafisah</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0c10;
+  --primary:#1f2833;
+  --accent:#45a29e;
+  --highlight:#f1c40f;
+  --purple:#6c5ce7;
+  --text:#c5c6c7;
+  --shadow:0 12px 30px rgba(0,0,0,0.3);
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Quicksand',sans-serif;}
+body{background-color:var(--bg);color:var(--text);line-height:1.6;scroll-behavior:smooth;}
+a{text-decoration:none;color:var(--accent);}
+header{width:100%;padding:40px 20px;text-align:center;background:linear-gradient(90deg,var(--primary),var(--purple));box-shadow:var(--shadow);}
+header h1{font-family:'Playfair Display',serif;color:var(--highlight);font-size:42px;margin-bottom:8px;}
+header p{font-size:16px;color:var(--text);}
+.nav{margin-top:12px;}
+.nav a{margin:0 12px;color:var(--text);transition:0.3s;}
+.nav a:hover{color:var(--highlight);}
+.container{width:90%;max-width:1200px;margin:auto;padding:60px 0;}
+section{margin-bottom:80px;opacity:0;transform:translateY(30px);transition:all 0.8s ease-out;}
+h2{font-family:'Playfair Display',serif;color:var(--accent);margin-bottom:20px;font-size:32px;text-align:center;}
+.about, .skills, .portfolio, .testimonials, .contact{display:flex;flex-direction:column;gap:20px;}
+.profile{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
+.profile img{width:200px;height:200px;object-fit:cover;border-radius:12px;box-shadow:var(--shadow);}
+.skills .skill{margin-bottom:15px;}
+.skill-name{margin-bottom:6px;font-weight:500;}
+.skill-bar{width:100%;background:var(--primary);height:18px;border-radius:10px;overflow:hidden;}
+.skill-fill{height:100%;background:var(--highlight);width:0%;border-radius:10px;}
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;}
+.portfolio-grid img{width:100%;border-radius:10px;cursor:pointer;transition:transform .3s;}
+.portfolio-grid img:hover{transform:scale(1.05);}
+.testimonials .card{background:var(--primary);padding:20px;border-radius:12px;box-shadow:var(--shadow);}
+.contact form{display:flex;flex-direction:column;gap:12px;}
+.contact input, .contact textarea{padding:12px;border-radius:8px;border:none;font-size:14px;}
+.contact button{background:var(--highlight);color:var(--bg);border:none;padding:12px;border-radius:10px;font-weight:600;cursor:pointer;transition:0.3s;}
+.contact button:hover{opacity:0.9;}
+footer{text-align:center;color:var(--text);padding:20px 0;border-top:1px solid var(--primary);}
+.scroll-top{position:fixed;right:20px;bottom:20px;padding:10px 14px;border:none;border-radius:50%;background-color:var(--highlight);color:var(--bg);cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3);font-size:18px;display:none;z-index:999;}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;padding:20px;z-index:999;opacity:0;pointer-events:none;transition:opacity .3s;}
+.lightbox.show{opacity:1;pointer-events:auto;}
+.lightbox img{max-width:90%;max-height:90%;border-radius:10px;}
+@media(max-width:768px){.profile{flex-direction:column;align-items:center;}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Najwa Karimah Nafisah</h1>
+<p>📍 Sidoarjo | 📞 0895-6326-67797 | ✉️ najwakarimahh03@gmail.com</p>
+<div class="nav">
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#testimonials">Testimonials</a>
+<a href="#contact">Contact</a>
+</div>
+</header>
+
+<div class="container">
+
+<section id="about">
+<h2>Profil Profesional</h2>
+<div class="about profile">
+<img src="https://picsum.photos/seed/najwa/300/300" alt="Najwa">
+<div class="info">
+<p>Mahasiswa Informatika kreatif, mandiri, berjiwa wirausaha, berpengalaman membangun & mengelola beberapa bisnis mandiri beserta tim kecil, membuat konten digital, serta mengajar coding, game, dan AI.</p>
+<p>Memiliki kemampuan leadership, manajemen tim, digital marketing, desain kreatif, dan pemrograman. Siap membawa pengalaman nyata untuk menghasilkan dampak positif dan inovasi.</p>
+</div>
+</div>
+</section>
+
+<section id="skills">
+<h2>Keterampilan</h2>
+<div class="skills">
+<div class="skill"><div class="skill-name">Leadership & Manajemen Tim</div><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div></div>
+<div class="skill"><div class="skill-name">Digital Marketing & Social Media</div><div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div></div>
+<div class="skill"><div class="skill-name">Programming & Web Development</div><div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div></div>
+<div class="skill"><div class="skill-name">Desain & Multimedia</div><div class="skill-bar"><div class="skill-fill" data-width="75%"></div></div></div>
+<div class="skill"><div class="skill-name">Public Speaking & Problem Solving</div><div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div></div>
+</div>
+</section>
+
+<section id="portfolio">
+<h2>Portfolio / Projects</h2>
+<div class="portfolio-grid">
+<img src="https://picsum.photos/seed/p1/400/300" alt="Project1">
+<img src="https://picsum.photos/seed/p2/400/300" alt="Project2">
+<img src="https://picsum.photos/seed/p3/400/300" alt="Project3">
+<img src="https://picsum.photos/seed/p4/400/300" alt="Project4">
+</div>
+<div class="lightbox" id="lightbox"><img src="" alt="large"></div>
+</section>
+
+<section id="testimonials">
+<h2>Testimoni</h2>
+<div class="testimonials">
+<div class="card"><p>"Najwa profesional & kreatif, hasil kerjanya selalu memuaskan!"</p><strong>- Klien A</strong></div>
+<div class="card"><p>"Keterampilan digital marketing & webnya luar biasa, recommended!"</p><strong>- Klien B</strong></div>
+<div class="card"><p>"Pengajar coding yang sabar dan inovatif, anak-anak sangat menikmati pelajarannya."</p><strong>- Sekolah SDN Lemahputro 3</strong></div>
+</div>
+</section>
+
+<section id="contact">
+<h2>Kontak</h2>
+<div class="contact">
+<form id="contactForm">
+<input type="text" placeholder="Nama Anda" required>
+<input type="email" placeholder="Email" required>
+<textarea rows="4" placeholder="Pesan" required></textarea>
+<button type="submit">Kirim Pesan</button>
+<div class="msg" style="display:none;color:var(--highlight);margin-top:6px;">Terima kasih! Pesan sudah dikirim.</div>
+</form>
+</div>
+</section>
+
+</div>
+
+<footer>
+<p>© 2025 Najwa Karimah Nafisah • Portfolio</p>
+</footer>
+
+<button class="scroll-top">⬆</button>
+
+<script>
+// Scroll fade-in
+const sections = document.querySelectorAll('section');
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+  if(entry.isIntersecting){
+    entry.target.style.opacity=1;
+    entry.target.style.transform='translateY(0)';
+  }
+});
+},{threshold:0.2});
+sections.forEach(sec=>observer.observe(sec));
+
+// Skill bar animasi
+const skillBars = document.querySelectorAll('.skill-fill');
+skillBars.forEach(bar=>{
+  const width = bar.dataset.width || '80%';
+  setTimeout(()=>{bar.style.width=width;},500);
+});
+
+// Scroll top button
+const topBtn = document.querySelector('.scroll-top');
+topBtn.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
+window.addEventListener('scroll', ()=>{topBtn.style.display=(window.scrollY>300)?'block':'none';});
+
+// Lightbox
+const lightbox = document.getElementById('lightbox');
+const lightImg = lightbox.querySelector('img');
+document.querySelectorAll('.portfolio-grid img').forEach(img=>{
+  img.addEventListener('click', ()=>{
+    lightImg.src = img.src;
+    lightbox.classList.add('show');
+  });
+});
+lightbox.addEventListener('click', ()=>{lightbox.classList.remove('show');});
+
+// Contact form dummy
+const form = document.getElementById('contactForm');
+form.addEventListener('submit', e=>{
+  e.preventDefault();
+  form.querySelector('.msg').style.display='block';
+  form.reset();
+});
+</script>
+
+</body>
+</html>
